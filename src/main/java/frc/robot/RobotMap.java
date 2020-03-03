@@ -10,6 +10,8 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.VictorSP;
 
@@ -20,6 +22,7 @@ import edu.wpi.first.wpilibj.VictorSP;
  * floating around.
  */
 public class RobotMap {
+  //Motors
   public static VictorSP rightMotor;
   public static VictorSP leftMotor;
 
@@ -33,7 +36,20 @@ public class RobotMap {
   public static Spark rightIntake;
   public static Spark topIntake;
 
+  //Sensors
+  public static DigitalInput visionAlignment;
+  public static DigitalInput visionDirection;
+  public static DigitalInput visionLeft;
+  //Digital Outputs
+  public static DigitalOutput angelEye;
+
   public static void init(){
+    //Vision DIO
+    angelEye = new DigitalOutput(0);
+    visionAlignment = new DigitalInput(1);
+    visionDirection = new DigitalInput(4);
+    visionLeft = new DigitalInput(3);
+
     //Drivetrain
     rightMotor = new VictorSP(0);
     leftMotor = new VictorSP(1);
@@ -49,6 +65,8 @@ public class RobotMap {
     leftIntake = new Spark(2);
     rightIntake = new Spark(4);
     topIntake = new Spark(3);
+
+
 
     //Inversions
     leftMotor.setInverted(false);

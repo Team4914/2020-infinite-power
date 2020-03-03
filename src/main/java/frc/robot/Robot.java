@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -33,9 +34,6 @@ public class Robot extends TimedRobot {
 
   public static OI m_oi;
 
-  public static DigitalOutput greenLight;
-  public static I2C mingyecommunication;
-
   //Auto command
   Command m_autoCommand;
 
@@ -50,7 +48,6 @@ public class Robot extends TimedRobot {
 
   public static double intakeSpeed = 0;
 
-  public static boolean lightState = false;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -66,12 +63,10 @@ public class Robot extends TimedRobot {
     m_balltube = new BallTube();
     m_intake = new Intake();
 
-    greenLight = new DigitalOutput(0);
     //mingyecommunication = new I2C(port, deviceAddress);
     
     CameraServer.getInstance().startAutomaticCapture();
 
-    lightState = true;
   }
 
   /**
@@ -84,7 +79,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    greenLight.set(lightState);
   }
 
   /**

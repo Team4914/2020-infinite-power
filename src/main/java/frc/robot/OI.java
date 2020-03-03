@@ -9,9 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.LightToggleCommand;
-import frc.robot.commands.PassiveInShooterCommand;
-import frc.robot.commands.ShootCommand;
+import frc.robot.commands.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -99,12 +97,13 @@ public class OI {
         mainA.whileHeld(new ShootCommand());
         mainB.toggleWhenPressed(new PassiveInShooterCommand());
         mainX.whenPressed(new LightToggleCommand());
+        mainBumperRight.whileHeld(new AlignShooterCommand());
       /*
        * This is where you assign functions to the co joystick controller
        */
         coA.whileHeld(new ShootCommand());
         coB.toggleWhenPressed(new PassiveInShooterCommand());
-
+        coBumperRight.whileHeld(new AlignShooterCommand());
 
       System.out.println("OI Started");
     }
