@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class AutoCommand extends Command {
+
   public AutoCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -28,16 +29,12 @@ public class AutoCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.topShooterSpeed = 0.58;
-    Robot.bottomShooterSpeed = 0.58;
-    Robot.ballTubeSpeed = 0.7;
-    Timer.delay(2);
-    Robot.flushOVars();
-
-    Robot.leftDriveSpeed = -0.3;
-    Robot.rightDriveSpeed = -0.3;
-    Timer.delay(2);
-    Robot.flushOVars();
+    Robot.m_shooter.runDual(0.55);
+    Robot.m_balltube.runDual(0.2);
+    Timer.delay(3);
+    System.out.println("yep");
+    Robot.m_shooter.runDual(0);
+    Robot.m_balltube.runDual(0);
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -25,6 +25,7 @@ public class LightToggleCommand extends Command {
   @Override
   protected void execute() {
     Robot.m_shooter.toggleAngelEye();
+    System.out.println("test");
   }
 
   // Make this return true when this Command no longer needs to run execute()

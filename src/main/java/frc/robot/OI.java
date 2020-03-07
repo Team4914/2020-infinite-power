@@ -96,15 +96,20 @@ public class OI {
 
         mainA.whileHeld(new ShootCommand());
         mainB.toggleWhenPressed(new PassiveInShooterCommand());
-        mainX.whenPressed(new LightToggleCommand());
+        mainX.whileHeld(new UnclimbCommand());
+        mainY.whileHeld(new ClimbCommand());
+        mainStart.whileHeld(new ExtendClimberCommand());
+        mainBack.whileHeld(new RetractClimberCommand());
         mainBumperRight.whileHeld(new AlignShooterCommand());
+        mainBumperLeft.whileHeld(new UpTubeCommand());
       /*
        * This is where you assign functions to the co joystick controller
        */
         coA.whileHeld(new ShootCommand());
         coB.toggleWhenPressed(new PassiveInShooterCommand());
+        coX.whenPressed(new LightToggleCommand());
         coBumperRight.whileHeld(new AlignShooterCommand());
-
+        coBumperLeft.whileHeld(new UpTubeCommand());
       System.out.println("OI Started");
     }
     

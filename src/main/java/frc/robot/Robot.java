@@ -31,6 +31,7 @@ public class Robot extends TimedRobot {
   public static Shooter m_shooter;
   public static BallTube m_balltube;
   public static Intake m_intake;
+  public static Climber m_climber;
 
   public static OI m_oi;
 
@@ -48,6 +49,8 @@ public class Robot extends TimedRobot {
 
   public static double intakeSpeed = 0;
 
+  public static double climbSpeed = 0;
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -62,11 +65,11 @@ public class Robot extends TimedRobot {
     m_shooter = new Shooter();
     m_balltube = new BallTube();
     m_intake = new Intake();
+    m_climber = new Climber();
 
     //mingyecommunication = new I2C(port, deviceAddress);
     
     CameraServer.getInstance().startAutomaticCapture();
-
   }
 
   /**
@@ -100,6 +103,7 @@ public class Robot extends TimedRobot {
     m_autoCommand = new AutoCommand();
 
     if (m_autoCommand != null) {
+      System.out.println("auto started");
 			m_autoCommand.start();
 		}
   }
@@ -123,13 +127,14 @@ public class Robot extends TimedRobot {
   @Override
   
   public void teleopPeriodic() {
-    ballTubeSpeed += (m_oi.getCoTRight() - m_oi.getCoTLeft() * 0.4 + m_oi.getMainTRight() - m_oi.getMainTLeft() * 0.4);
-    intakeSpeed += m_oi.getMainTRight() * 0.5 - m_oi.getMainTLeft() * 0.5 + m_oi.getCoTRight() * 0.5 - m_oi.getCoTLeft() * 0.5;
+    ballTubeSpeed += (m_oi.getCoTRight() * 0.4 - m_oi.getCoTLeft() * 0.4 + m_oi.getMainTRight() * 0.5 - m_oi.getMainTLeft() * 0.5);
+    intakeSpeed += m_oi.getMainTRight() * 0.5 - m_oi.getMainTLeft();// * 0.5 + m_oi.getCoTRight() * 0.5 - m_oi.getCoTLeft() * 0.5;
     
     operateDrivetrain();
     operateShooter();
     operateBallTube();
     operateIntake();
+    operateClimber();
 
     flushOVars();
     Scheduler.getInstance().run();
@@ -163,6 +168,10 @@ public class Robot extends TimedRobot {
     m_intake.intake(intakeSpeed);
   }
 
+  public void operateClimber(){
+    m_climber.climb(climbSpeed);
+  }
+
   public static void flushOVars(){
     leftDriveSpeed = 0;
     rightDriveSpeed = 0;
@@ -170,6 +179,7 @@ public class Robot extends TimedRobot {
     bottomShooterSpeed = 0;
     ballTubeSpeed = 0;
     intakeSpeed = 0;
+    climbSpeed = 0;
   }
 
   public static double safety(double speed){

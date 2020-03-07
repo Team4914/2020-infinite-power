@@ -25,10 +25,11 @@ public class AlignShooterCommand extends Command {
   @Override
   protected void execute() {
     int yo_mum = Robot.m_shooter.getAlignment();
-
+	
     if(yo_mum == 0) return;
     System.out.println(yo_mum);
     Robot.m_drivetrain.tankDrive(yo_mum * -0.12, yo_mum * 0.12);
+    //Robot.m_drivetrain.tankDrive(yo_mum * -0.12, yo_mum * 0.12);
   }
 
   // Make this return true when this Command no longer needs to run execute()

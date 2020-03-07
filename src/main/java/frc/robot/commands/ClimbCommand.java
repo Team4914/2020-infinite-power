@@ -10,11 +10,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class UpTubeCommand extends Command {
-  public UpTubeCommand() {
+public class ClimbCommand extends Command {
+  public ClimbCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    //requires(Robot.m_balltube);
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +24,7 @@ public class UpTubeCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.ballTubeSpeed = 0.25;
+    Robot.climbSpeed = 0.5;
   }
 
   // Make this return true when this Command no longer needs to run execute()

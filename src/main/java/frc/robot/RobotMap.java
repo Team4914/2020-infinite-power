@@ -32,6 +32,10 @@ public class RobotMap {
   public static VictorSPX leftTube;
   public static VictorSPX rightTube;
 
+  public static VictorSPX leftClimb;
+  public static VictorSPX rightClimb;
+  public static TalonSRX climbExtension;
+
   public static Spark leftIntake;
   public static Spark rightIntake;
   public static Spark topIntake;
@@ -66,7 +70,10 @@ public class RobotMap {
     rightIntake = new Spark(4);
     topIntake = new Spark(3);
 
-
+    //Climber
+    leftClimb = new VictorSPX(1); //not sure which is which really
+    rightClimb = new VictorSPX(3);
+    climbExtension = new TalonSRX(2);
 
     //Inversions
     leftMotor.setInverted(false);

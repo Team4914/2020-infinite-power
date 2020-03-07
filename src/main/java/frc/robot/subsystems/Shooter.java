@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.PiReciever;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
@@ -29,9 +30,24 @@ public class Shooter extends Subsystem {
 
   private boolean angelEyeState = true;//gets toggled on robot init
   
+  public static PiReciever reciever = null;
+
   @Override
   public void initDefaultCommand() { 
     angelEye.set(angelEyeState);
+
+    top.setSensorPhase(true);
+    bottom.setSensorPhase(true);
+
+    /*
+    try{
+      reciever = new PiReciever(false);
+      System.out.println("Pi connection successful");
+    }
+    catch(Exception e){
+      System.out.println("Pi connection failed");
+      e.printStackTrace();
+    }*/
   }
   /**
    * Gets alignment of shooter with vision target.
@@ -39,22 +55,30 @@ public class Shooter extends Subsystem {
    * right of robot alignment respectively.
    */
   public int getAlignment(){
-    //Aligned
-    if(visionAlignment.get()) return 0;
-
-    //Right of
-    if(visionDirection.get()){
-      System.out.println("right");
-      //Add more code for if given distance from aligned
-      return 1;
+    /*
+    if(reciever == null){
+      return 0;
     }
-    if(!visionLeft.get()){
+    
+    return Integer.parseInt(reciever.getValue());
+    */
+    System.out.println("A: " + visionAlignment.get() + " R: " + visionDirection.get() + " L: " + visionLeft.get());
+
+    //Aligned
+    if(visionAlignment.get()){
+      System.out.println("align");
+      return 0;
+
+    } 
+
+    if(visionLeft.get()){
       System.out.println("left");
-      return -1;
+      return 1;
     }
     //Left of
     
-    return 1;
+    return -1;
+    
   }
 
   public void toggleAngelEye(){
@@ -74,11 +98,15 @@ public class Shooter extends Subsystem {
   }
   
   public void runTop(double speed){
-    top.set(TalonSRXControlMode.PercentOutput, Robot.safety(speed));
+    top.set(TalonSRXControlMode.Velocity, (int)(300 * Robot.safety(speed)));
+    
+    //top.set(TalonSRXControlMode.PercentOutput, Robot.safety(speed));
   }
 
   public void runBottom(double speed){
-    bottom.set(TalonSRXControlMode.PercentOutput, Robot.safety(speed));
+    //bottom.set(TalonSRXControlMode.PercentOutput, Robot.safety(speed));
+
+    bottom.set(TalonSRXControlMode.Velocity, (int)(300 * Robot.safety(speed)));
   }
 
 }
