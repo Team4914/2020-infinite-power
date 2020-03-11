@@ -98,15 +98,15 @@ public class Shooter extends Subsystem {
   }
   
   public void runTop(double speed){
-    top.set(TalonSRXControlMode.Velocity, (int)(300 * Robot.safety(speed)));
+    //top.set(TalonSRXControlMode.Velocity, (int)(300 * Robot.safety(speed)));
     
-    //top.set(TalonSRXControlMode.PercentOutput, Robot.safety(speed));
+    top.set(TalonSRXControlMode.PercentOutput, Robot.safety(speed));
   }
 
   public void runBottom(double speed){
-    //bottom.set(TalonSRXControlMode.PercentOutput, Robot.safety(speed));
+    bottom.set(TalonSRXControlMode.PercentOutput, Robot.safety(speed));
 
-    bottom.set(TalonSRXControlMode.Velocity, (int)(300 * Robot.safety(speed)));
+    //bottom.set(TalonSRXControlMode.Velocity, (int)(300 * Robot.safety(speed)));
   }
 
 }

@@ -98,8 +98,8 @@ public class OI {
         mainB.toggleWhenPressed(new PassiveInShooterCommand());
         mainX.whileHeld(new UnclimbCommand());
         mainY.whileHeld(new ClimbCommand());
-        mainStart.whileHeld(new ExtendClimberCommand());
-        mainBack.whileHeld(new RetractClimberCommand());
+        mainStart.whileHeld(new CWClimberCommand());
+        mainBack.whileHeld(new CCWClimberCommand());
         mainBumperRight.whileHeld(new AlignShooterCommand());
         mainBumperLeft.whileHeld(new UpTubeCommand());
       /*
@@ -110,6 +110,8 @@ public class OI {
         coX.whenPressed(new LightToggleCommand());
         coBumperRight.whileHeld(new AlignShooterCommand());
         coBumperLeft.whileHeld(new UpTubeCommand());
+        coStart.whileHeld(new ExtendClimbCommand());
+        coBack.whileHeld(new RetractClimbCommand());
       System.out.println("OI Started");
     }
     

@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -27,7 +28,8 @@ public class Climber extends Subsystem {
   private VictorSPX left = RobotMap.leftClimb;
   private VictorSPX right = RobotMap.rightClimb;
 
-  private TalonSRX extension = RobotMap.climbExtension;
+  private TalonSRX rotation = RobotMap.climbRotation;
+  private Spark extension = RobotMap.climbExtension;
 
   @Override
   public void initDefaultCommand() {
@@ -36,7 +38,7 @@ public class Climber extends Subsystem {
 
     left.setNeutralMode(NeutralMode.Brake);
     right.setNeutralMode(NeutralMode.Brake);
-    extension.setNeutralMode(NeutralMode.Brake);
+    rotation.setNeutralMode(NeutralMode.Brake);
   }
 
   public void climb(double speed){
@@ -44,7 +46,10 @@ public class Climber extends Subsystem {
     right.set(VictorSPXControlMode.PercentOutput, Robot.safety(-speed));
   }
 
+  public void rotate(double speed){
+    rotation.set(TalonSRXControlMode.PercentOutput, Robot.safety(speed));
+  }
   public void extend(double speed){
-    extension.set(TalonSRXControlMode.PercentOutput, Robot.safety(speed));
+    extension.set(Robot.safety(speed));
   }
 }

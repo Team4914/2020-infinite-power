@@ -129,7 +129,8 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     ballTubeSpeed += (m_oi.getCoTRight() * 0.4 - m_oi.getCoTLeft() * 0.4 + m_oi.getMainTRight() * 0.5 - m_oi.getMainTLeft() * 0.5);
     intakeSpeed += m_oi.getMainTRight() * 0.5 - m_oi.getMainTLeft();// * 0.5 + m_oi.getCoTRight() * 0.5 - m_oi.getCoTLeft() * 0.5;
-    
+
+
     operateDrivetrain();
     operateShooter();
     operateBallTube();

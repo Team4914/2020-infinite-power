@@ -20,7 +20,7 @@ public class Intake extends Subsystem {
   // here. Call these from Commands.
 
   private Spark left = RobotMap.leftIntake;
-  private Spark right = RobotMap.rightIntake;
+  //private Spark right = RobotMap.rightIntake;
   private Spark roller = RobotMap.topIntake;
 
 
@@ -32,16 +32,17 @@ public class Intake extends Subsystem {
 
   public void intake(double speed){
     runLeft(speed);
-    runRight(speed);
+    //runRight(speed);
     runTop(speed);
   }
 
   public void runLeft(double speed){
     left.setSpeed(Robot.safety(speed));
   }
+  /*
   public void runRight(double speed){
     right.setSpeed(Robot.safety(-speed));
-  }
+  }*/
   public void runTop(double speed){
     roller.setSpeed(Robot.safety(-speed));
   }

@@ -33,8 +33,11 @@ public class AutoCommand extends Command {
     Robot.m_balltube.runDual(0.2);
     Timer.delay(3);
     System.out.println("yep");
+    Robot.m_drivetrain.tankDrive(-0.3, -0.3);
     Robot.m_shooter.runDual(0);
     Robot.m_balltube.runDual(0);
+    Timer.delay(2);
+    Robot.m_drivetrain.tankDrive(0, 0  );
   }
 
   // Make this return true when this Command no longer needs to run execute()

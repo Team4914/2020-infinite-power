@@ -2,10 +2,7 @@
 /* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.               
-
-
-*/
+/* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
@@ -13,11 +10,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ShootCommand extends Command {
-  public ShootCommand() {
+public class CCWClimberCommand extends Command {
+  public CCWClimberCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    //requires(Robot.m_shooter);
   }
 
   // Called just before this Command runs the first time
@@ -28,11 +24,8 @@ public class ShootCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.topShooterSpeed = 0.65; // tested value
-    Robot.bottomShooterSpeed = 0.65;
+    Robot.m_climber.rotate(-0.5);
   }
-
-
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -43,11 +36,13 @@ public class ShootCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.m_climber.rotate(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.m_climber.rotate(0);
   }
 }
